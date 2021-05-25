@@ -163,9 +163,9 @@ typedef void (*GedFilterStateFreer)(void *);
 
 
 /** a helper for changing data in an event to a non-malloced string */
-static void changePayloadToConst(GedEvent *e, const char *val);
+void changePayloadToConst(GedEvent *e, const char *val);
 /** a helper for changing data in an event to a malloced string */
-static void changePayloadToDynamic(GedEvent *e, char *val);
+void changePayloadToDynamic(GedEvent *e, char *val);
 
 
 void _show_event(const GedEvent *evt); // debugging helper

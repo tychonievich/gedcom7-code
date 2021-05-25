@@ -30,6 +30,7 @@
 #include "langtag.c"
 #include "datefix.c"
 #include "agefix.c"
+#include "filenames.c"
 #include "mediatype.c"
 #include "addschma.c"
 #include "enums.c"
@@ -41,7 +42,8 @@
 #include "version.c"
 
 #include "event2record.c"
-//#include "noter2s.c"
+// #include "noter2s.c" // unfinished
+#include "note2snote.c" // to be replaced by noter2s later
 #include "sours2r.c"
 #include "objes2r.c"
 #include "record2event.c"
@@ -81,22 +83,26 @@ struct {
     {{0, ged_agefix}, ged_longstate_maker, ged_longstate_freer},
     // Update to 7.0.0 OBJE.FILE.FORM format
     {{0, ged_mediatype}, ged_longstate_maker, ged_longstate_freer},
+    // Update FILE to have URL payload
+    {{0, ged_filenames}, ged_longstate_maker, ged_longstate_freer},
     // change ROMN and FONE to TRAN with appropriate LANG
     {{0, ged_tran}, ged_longstate_maker, ged_longstate_freer},
     // change AFN, RIN, and RFN into EXID with appropriate TYPE
     {{0, ged_exid}, ged_exidstate_maker, ged_exidstate_freer},
     // change RELA to ROLE with PHRASE
     {{0, ged_rela2role}, ged_longstate_maker, ged_longstate_freer},
+    // change RELA to ROLE with PHRASE
+    {{0, ged_note2snote}, ged_longstate_maker, ged_longstate_freer},
 
     // not technically 5→7, this is to fix a common misuse of ALIA
     {{0, ged_alia2aka}, ged_longstate_maker, ged_longstate_freer},
 
-    // pass 1 assemble parse events into records
-    {{ged_event2record,0}, ged_event2recordstate_maker, ged_event2recordstate_freer},
-    //// change all note records into note structures
-    //{{ged_noter2s1, ged_noter2s2}, ged_noter2s_maker, ged_noter2s_freer},
-    // covert assembled records back into parse events
-    {{ged_record2event,0}, ged_nostate_maker, ged_nostate_freer},
+    //// pass 1 assemble parse events into records
+    //{{ged_event2record,0}, ged_event2recordstate_maker, ged_event2recordstate_freer},
+    ////// change all note records into note structures
+    //// {{ged_noter2s1, ged_noter2s2}, ged_noter2s_maker, ged_noter2s_freer},
+    //// covert assembled records back into parse events
+    //{{ged_record2event,0}, ged_nostate_maker, ged_nostate_freer},
 
     // pass 2 assemble parse events into records
     {{0, ged_event2record}, ged_event2recordstate_maker, ged_event2recordstate_freer},

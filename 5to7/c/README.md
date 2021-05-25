@@ -36,6 +36,7 @@ Current status:
         - [x] Normalize case
         - [x] Convert user-text to `PHRASE`s
     - [x] change `SOUR` with text payload into pointer to `SOUR` with `NOTE`
+    - [x] change `NOTE` record or with pointer payload into `SNOTE`
     - [x] change `OBJE` with no payload to pointer to new `OBJE` record
     - [x] Convert `FONE` and `ROMN` to `TRAN` and their `TYPE`s to BCP-47 `LANG`s
     - [x] tag renaming, including
@@ -52,20 +53,18 @@ Current status:
     - [x] change `_FSFTID`, `_APID` to `EXID`
     - [x] remove `SUBN`, `HEAD`.`FILE`, `HEAD`.`CHAR`
         - (deferred) `HEAD`.`PLAC` was originally on this list, but has been deferred to a later version
-    - [ ] change `FILE` payloads into URLs
-        - [ ] Windows-style `\` becomes `/`
-        - [ ] Windows diver letter `C:\WINDOWS` becomes `file:///c:/WINDOWS`
-        - [ ] POSIX-stye `/User/foo` becomes `file:///User/foo`
+    - [x] change `FILE` payloads into URLs
+        - [x] Windows-style `\` becomes `/`
+        - [x] Windows diver letter `C:\WINDOWS` becomes `file:///c:/WINDOWS`
+        - [x] POSIX-stye `/User/foo` becomes `file:///User/foo`
     - [x] update the `GEDC`.`VERS` to `7.0.0`
     - [x] (extra) change string-valued `INDI`.`ALIA` into `NAME` with `TYPE` `AKA`
     - [ ] (5.5) change base64-encoded OBJE into GEDZIP
+    - [ ] Change any illegal tag `XYZ` into `_EXT_XYZ`
 - two-pass operations
-    - [x] change `NOTE` with pointer payload to nested copy of pointed-to `NOTE`
-        - **pending**: open issue discussing what the right change here is
+    - [ ] use heuristic to change some pointer-`NOTE` to nested-`NOTE` instead of `SNOTE`
     - [x] add `SCHMA` for all used known extensions
         - [ ] add URIs (or standard tags) for all extensions from <https://wiki-de.genealogy.net/GEDCOM/_Nutzerdef-Tag> and <http://www.gencom.org.nz/GEDCOM_tags.html>
-    - [ ] change `OBJE` with multiple `FILE` into multiple `OBJE` instead
-        - [ ] also duplicated any pointers to these `OBJE`
 
 # Usage
 

@@ -259,7 +259,7 @@ int main(int argc, char *argv[]) {
 
 
 /** a helper for changing data */
-static void changePayloadToConst(GedEvent *e, const char *val) {
+void changePayloadToConst(GedEvent *e, const char *val) {
     if (GED_OWNS_DATA & (e->flags)) {
         free(e->data);
         e->flags &= ~GED_OWNS_DATA;
@@ -268,7 +268,7 @@ static void changePayloadToConst(GedEvent *e, const char *val) {
 }
 
 /** a helper for changing data */
-static void changePayloadToDynamic(GedEvent *e, char *val) {
+void changePayloadToDynamic(GedEvent *e, char *val) {
     if (GED_OWNS_DATA & (e->flags)) free(e->data);
     e->flags |= GED_OWNS_DATA;
     e->data = val;

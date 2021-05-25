@@ -45,7 +45,7 @@ void ged_rename(GedEvent *event, GedEmitterTemplate *emitter, void *rawstate) {
         if (!strcmp("_EMAIL", event->data))
             changePayloadToConst(event, "EMAIL");
         if (!strcmp("_INIT", event->data))
-            changePayloadToConst(event, "INIT");
+            changePayloadToConst(event, "INIL");
         //if (!strcmp("_SDATE", event->data))
             //changePayloadToConst(event, "SDATE");
         if (!strcmp("_UID", event->data))
