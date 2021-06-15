@@ -1,0 +1,32 @@
+name: Compile
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.0.2
+    - name: Build (with cl, for ${{runner.os}})
+      shell: cmd
+      run: |
+        cd 5to7
+        cd c
+        msbuild 5to7.vcxproj /p:configuration=release /p:platform=x64
+  build-linux:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build (with clang, for ${{runner.os}})
+      shell: bash
+      run: cd 5to7/c && make
+  build-macos:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build (with clang, for ${{runner.os}})
+      shell: bash
+      run: cd 5to7/c && make

@@ -1,0 +1,51 @@
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.default.props" />
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ItemGroup>
+    <ClCompile Include="ansel2utf8.c" />
+    <ClCompile Include="geddate.c" />
+    <ClCompile Include="ged_ebp_emit.c" />
+    <ClCompile Include="strtrie.c" />
+    <ClCompile Include="gedage.c" />
+    <ClCompile Include="ged_ebp.c" />
+    <ClCompile Include="ged_ebp_parse.c" />
+    <ClCompile Include="platform.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="platform.h" />
+    <ClInclude Include="ansel2utf8.h" />
+    <ClInclude Include="geddate.h" />
+    <ClInclude Include="ged_ebp_emit.h" />
+    <ClInclude Include="strtrie.h" />
+    <ClInclude Include="gedage.h" />
+    <ClInclude Include="ged_ebp.h" />
+    <ClInclude Include="ged_ebp_parse.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Targets" />
+</Project>
+
