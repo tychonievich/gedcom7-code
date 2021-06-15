@@ -15,7 +15,11 @@ jobs:
       run: |
         cd 5to7
         cd c
-        msbuild 5to7.vcxproj /p:configuration=release /p:platform=x64
+        msbuild ged5to7.vcxproj /p:configuration=release /p:platform=x64
+    - uses: actions/upload-artifact@v2
+      with:
+        name: ged5to7-windows
+        path: 5to7/c/x64/release/ged5to7.exe
   build-linux:
     runs-on: ubuntu-18.04
     steps:
@@ -23,6 +27,10 @@ jobs:
     - name: Build (with clang, for ${{runner.os}})
       shell: bash
       run: cd 5to7/c && make
+    - uses: actions/upload-artifact@v2
+      with:
+        name: ged5to7-linux
+        path: 5to7/c/ged5to7
   build-macos:
     runs-on: macos-10.15
     steps:
@@ -33,3 +41,7 @@ jobs:
         sudo xcode-select -s "/Applications/Xcode_12.4.app"
         cd 5to7/c
         make
+    - uses: actions/upload-artifact@v2
+      with:
+        name: ged5to7-macos
+        path: 5to7/c/ged5to7
