@@ -24,9 +24,12 @@ jobs:
       shell: bash
       run: cd 5to7/c && make
   build-macos:
-    runs-on: macos-latest
+    runs-on: macos-10.15
     steps:
     - uses: actions/checkout@v2
     - name: Build (with clang, for ${{runner.os}})
       shell: bash
-      run: cd 5to7/c && make
+      run: |
+        sudo xcode-select -s "/Applications/Xcode_12.4.app"
+        cd 5to7/c
+        make
