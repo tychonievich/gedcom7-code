@@ -3,9 +3,9 @@
 
 
 /**
- * Given a AGE, parses it as 5.5.1 and converts to GED 7.0.0.
+ * Given a AGE, parses it as 5.5.1 and converts to GED 7.0.
  * 
- * The main difference is that 7.0.0 makes age words into phrases
+ * The main difference is that 7.0 makes age words into phrases
  * and defines where whitespace may appear. It also allows a count
  * of weeks, but since 5.5.1 didn't that isn't important for the 
  * converter.

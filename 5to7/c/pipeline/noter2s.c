@@ -13,9 +13,9 @@
  * 
  * Additionally, 5.5.1 allowed infinite and circular links because note
  * records could contain sources that could contain pointers to note 
- * records. 7.0.0 limits this by forcing any note that is a child of a
+ * records. 7.0 limits this by forcing any note that is a child of a
  * source to be a NOTE_FLAT, not a NOTE_STRUCTURE, where a NOTE_FLAT 
- * has no 5.5.1 substructures (it can have 7.0.0 MIME and LANG though)
+ * has no 5.5.1 substructures (it can have 7.0 MIME and LANG though)
  */
 
 #error "This file represents a change that was rolled back prior to the 7.0 release"

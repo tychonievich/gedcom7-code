@@ -38,7 +38,7 @@ GedDateValue *gedDateParse551(char *payload);
 
 
 /**
- * Formats a parsed DateValue for GEDCOM 7.0.0.
+ * Formats a parsed DateValue for GEDCOM 7.0.
  * Always returned a `malloc`ed string.
  * Does not handle `d->phrase`, only the payload of the DATE structure.
  */

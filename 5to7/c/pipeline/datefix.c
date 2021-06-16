@@ -3,12 +3,12 @@
 
 
 /**
- * Given a DATE, parses it as 5.5.1 and converts to GED 7.0.0.
+ * Given a DATE, parses it as 5.5.1 and converts to GED 7.0.
  * 
  * Because the main event generator converts `@#DCAL@` to `CAL`,
  * not quite the same as GEDCOM 5.5.1, but very similar.
  * 
- * Because 7.0.0 has a simpler format than 5.5.1, some DATEs may also
+ * Because 7.0 has a simpler format than 5.5.1, some DATEs may also
  * emit a PHRASE substructure.
  *
  * Does not validate calendar names or that months match the calendar.

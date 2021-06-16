@@ -1,7 +1,7 @@
-# GEDCOM 5.5.1 to GEDCOM 7.0.0 converter
+# GEDCOM 5.5.1 to GEDCOM 7.0 converter
 
-GEDCOM 7.0 is a breaking change with GEDCOM 5.5.1. This means that 5.5.1 files cannot be parsed as-is as if they were 7.0.0 files.
-This project is a zero-dependency public-domain (CC0) ANSI-C implementation of a 5.5.1 to 7.0.0 converter.
+GEDCOM 7.0 is a breaking change with GEDCOM 5.5.1. This means that 5.5.1 files cannot be parsed as-is as if they were 7.0 files.
+This project is a zero-dependency public-domain (CC0) ANSI-C implementation of a 5.5.1 to 7.0 converter.
 C was chosen because it as very few features, so it should be able to convert the code to other languages easily;
 and because many other languages have methods for calling C code natively.
 
@@ -57,7 +57,7 @@ Current status:
         - [x] Windows-style `\` becomes `/`
         - [x] Windows diver letter `C:\WINDOWS` becomes `file:///c:/WINDOWS`
         - [x] POSIX-stye `/User/foo` becomes `file:///User/foo`
-    - [x] update the `GEDC`.`VERS` to `7.0.0`
+    - [x] update the `GEDC`.`VERS` to `7.0`
     - [x] (extra) change string-valued `INDI`.`ALIA` into `NAME` with `TYPE` `AKA`
     - [ ] (5.5) change base64-encoded OBJE into GEDZIP
     - [ ] Change any illegal tag `XYZ` into `_EXT_XYZ`
@@ -75,7 +75,7 @@ Edit `Makefile` as needed; likely changes include
 
 Then run `make`.
 
-To run, execute the resulting `ged5to7`. It accepts 5.5.1 .ged files from stdin or the command line and outputs them in 7.0.0 (or as much of that as is yet implemented). See the comments in the code for more.
+To run, execute the resulting `ged5to7`. It accepts 5.5.1 .ged files from stdin or the command line and outputs them in 7.0 (or as much of that as is yet implemented). See the comments in the code for more.
 
 # Design Notes
 

@@ -1,5 +1,5 @@
 /**
- * Ensure exactly one HEAD.GEDC with one child, VERS 7.0.0
+ * Ensure exactly one HEAD.GEDC with one child, VERS 7.0
  */
 
 struct ged_version_state {
@@ -20,7 +20,7 @@ void ged_version(GedEvent *event, GedEmitterTemplate *emitter, void *rawstate) {
                 state->postGedc = 1;
                 emitter->emit(emitter, (GedEvent){GED_START, 0, .data="GEDC"});
                 emitter->emit(emitter, (GedEvent){GED_START, 0, .data="VERS"});
-                emitter->emit(emitter, (GedEvent){GED_TEXT, 0, .data="7.0.0"});
+                emitter->emit(emitter, (GedEvent){GED_TEXT, 0, .data="7.0"});
                 emitter->emit(emitter, (GedEvent){GED_END, 0, .data=0});
                 emitter->emit(emitter, (GedEvent){GED_END, 0, .data=0});
             }
@@ -30,7 +30,7 @@ void ged_version(GedEvent *event, GedEmitterTemplate *emitter, void *rawstate) {
         if (!state->level && !state->postGedc) {
             emitter->emit(emitter, (GedEvent){GED_START, 0, .data="GEDC"});
             emitter->emit(emitter, (GedEvent){GED_START, 0, .data="VERS"});
-            emitter->emit(emitter, (GedEvent){GED_TEXT, 0, .data="7.0.0"});
+            emitter->emit(emitter, (GedEvent){GED_TEXT, 0, .data="7.0"});
             emitter->emit(emitter, (GedEvent){GED_END, 0, .data=0});
             emitter->emit(emitter, (GedEvent){GED_END, 0, .data=0});
             state->postGedc = 1;

@@ -77,11 +77,11 @@ struct {
 
     // change "English" to "en", etc
     {{0, ged_langtag}, ged_langtagstate_maker, ged_langtagstate_freer},
-    // Update to 7.0.0 DATE format
+    // Update to 7.0 DATE format
     {{0, ged_datefix}, ged_longstate_maker, ged_longstate_freer},
-    // Update to 7.0.0 AGE format
+    // Update to 7.0 AGE format
     {{0, ged_agefix}, ged_longstate_maker, ged_longstate_freer},
-    // Update to 7.0.0 OBJE.FILE.FORM format
+    // Update to 7.0 OBJE.FILE.FORM format
     {{0, ged_mediatype}, ged_longstate_maker, ged_longstate_freer},
     // Update FILE to have URL payload
     {{0, ged_filenames}, ged_longstate_maker, ged_longstate_freer},
@@ -111,7 +111,7 @@ struct {
     // change non-pointer OBJE substructures into pointer to OBJE records
     {{0, ged_objes2r}, ged_longstate_maker, ged_longstate_freer},
 #ifdef CHANGE_NAMES
-    // convert to 7.0.0 NAME stucture
+    // convert to 7.0 NAME stucture
     {{0, ged_names}, ged_nostate_maker, ged_nostate_freer},
 #endif
     // covert assembled records back into parse events

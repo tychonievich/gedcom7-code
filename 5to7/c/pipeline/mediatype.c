@@ -1,7 +1,7 @@
 #include <string.h>
 
 /**
- * 5.5.1 used custom file format labels; 7.0.0 uses media types:
+ * 5.5.1 used custom file format labels; 7.0 uses media types:
  * 
  * - bmp -> image/bmp
  * - gif -> image/gif

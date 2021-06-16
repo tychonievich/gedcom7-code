@@ -53,7 +53,7 @@
 
 /**
  * Given a 5.5.1-style personal name (NAME, FONE, or ROMN),
- * modifies it into a 7.0.0-style personal name (without changing tag).
+ * modifies it into a 7.0-style personal name (without changing tag).
  * If this is inexact, returns a NOTE as well; if exact, returns null.
  */
 GedStructure *ged_names_helper(GedStructure *s) {
