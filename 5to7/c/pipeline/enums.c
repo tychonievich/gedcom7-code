@@ -55,7 +55,8 @@ enum {
 /// simple state tracking; short to ensure it fits in a long
 struct ged_enum_state {
     short inside; // one of the above GED_ENUM_*
-    short nesting; // for FAMC and NAME, how deep inside we are
+    char nesting; // for FAMC and NAME, how deep inside we are
+    char extnest; // nesting level of top-level extension
 };
 
 /**
@@ -117,7 +118,9 @@ void ged_enums(GedEvent *event, GedEmitterTemplate *emitter, void *rawstate) {
     struct ged_enum_state *state = (struct ged_enum_state *)rawstate;
     if (event->type == GED_START) {
         state->nesting += 1;
-        if (!strcmp("FAMC", event->data))
+        if (state->extnest || event->data[0] == '_')
+        { state->extnest += 1; }
+        else if (!strcmp("FAMC", event->data))
         { state->inside = GED_ENUM_FAMC; state->nesting = 0; }
         else if (!strcmp("NAME", event->data))
         { state->inside = GED_ENUM_NAME; state->nesting = 0; }
@@ -145,6 +148,7 @@ void ged_enums(GedEvent *event, GedEmitterTemplate *emitter, void *rawstate) {
         }
     }
     if (event->type == GED_END) {
+        if (state->extnest > 0) state->extnest -= 1;
         if (state->nesting > 0) state->nesting -= 1;
         if (state->inside == GED_ENUM_FAMC_STAT) state->inside = GED_ENUM_FAMC;
         if (state->inside == GED_ENUM_FAMC_ADOP) state->inside = GED_ENUM_FAMC;
