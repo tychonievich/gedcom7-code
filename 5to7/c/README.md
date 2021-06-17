@@ -75,7 +75,7 @@ Edit `Makefile` as needed; likely changes include
 
 Then run `make`.
 
-To run, execute the resulting `ged5to7`. It accepts 5.5.1 .ged files from stdin or the command line and outputs them in 7.0 (or as much of that as is yet implemented). See the comments in the code for more.
+To run, execute the resulting `ged5to7`. It accepts 5.5.1 .ged files from stdin or the command line and outputs them in 7.0. It has a few command-line options to control things like case-sensitivity of cross-reference identifiers and whether to include a PHRASE under recognized ROLEs; run `ged5to7 --help` for details.
 
 # Design Notes
 
