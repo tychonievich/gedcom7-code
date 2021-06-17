@@ -199,7 +199,7 @@ void ged_enums(GedEvent *event, GedEmitterTemplate *emitter, void *rawstate) {
                 else
                     ged_enum_as_tag(event, emitter);
             } break;
-            case GED_ENUM_PEDI: {} break;
+            case GED_ENUM_PEDI: {
                 if (strcasecmp("ADOPTED", event->data)
                  && strcasecmp("BIRTH", event->data)
                  && strcasecmp("FOSTER", event->data)
@@ -208,6 +208,7 @@ void ged_enums(GedEvent *event, GedEmitterTemplate *emitter, void *rawstate) {
                     ged_enum_other_with_phrase(event, emitter);
                 else
                     ged_enum_as_tag(event, emitter);
+            } break;
             case GED_ENUM_RESN: {
                 if (strcasecmp("CONFIDENTIAL", event->data)
                  && strcasecmp("LOCKED", event->data)
