@@ -11,6 +11,7 @@ public class GedStruct {
     public LinkedList<GedStruct> sub;
     int level;
     public String tag, id, payload;
+    public String uri;
     public Collection<GedStruct> incoming;
     public GedStruct pointsTo;
     final static Pattern GED_LINE = Pattern.compile("﻿?\\s*([0-9]+)\\s+(?:(@[^@]+@)\\s+)?([A-Za-z0-9_]+)(?:\\s([^\\n\\r]*))?[\\n\\r]*");
@@ -43,14 +44,16 @@ public class GedStruct {
     
     public GedStruct(GedStruct sup, String tag, String payload) {
         this.sub = new LinkedList<GedStruct>();
-        this.tag = tag;
+        if (tag.indexOf(':') < 0) this.tag = tag;
+        else this.uri = tag;
         this.payload = payload;
         if (sup != null) { sup.addSubstructure(this); this.level = sup.level+1; }
         else { this.sup = null; this.level = 0; }
     }
     public GedStruct(GedStruct sup, String tag, GedStruct payload) {
         this.sub = new LinkedList<GedStruct>();
-        this.tag = tag;
+        if (tag.indexOf(':') < 0) this.tag = tag;
+        else this.uri = tag;
         this.pointsTo = payload;
         if (payload == null) this.payload = "@VOID@";
         else if (payload.incoming != null) payload.incoming.add(this);
@@ -87,6 +90,22 @@ public class GedStruct {
         return ans;
     }
     
+    public void tag2uri() {
+        if (Converter5to7.substructures == null) return;
+        if (sup == null && tag.equals("HEAD")) uri = "HEAD pseudostructure";
+        else if (sup == null) uri = Converter5to7.substructures.get("", tag);
+        else if (sup.uri != null) uri = Converter5to7.substructures.get(sup.uri, tag);
+        for(GedStruct kid : sub) kid.tag2uri();
+    }
+    public void uri2tag() {
+        if (Converter5to7.uri2tag == null) return;
+        if (uri != null) {
+            String tag2 = Converter5to7.uri2tag.get((sup == null || sup.uri == null) ? "" : sup.uri, uri);
+            if (tag2 != null) tag = tag2;
+        }
+        for(GedStruct kid : sub) kid.uri2tag();
+    }
+    
     /**
      * Adds a substructure to this structure. If the substructure is
      * a CONT or CONC, this operation modifies the payload; otherwise
@@ -95,10 +114,10 @@ public class GedStruct {
      * in the order substructures appear in the file.
      */
     public boolean addSubstructure(GedStruct substructure) {
-        if (substructure.tag.equals("CONT")) {
+        if ("CONT".equals(substructure.tag)) {
             payload += "\n"+substructure.payload;
             return false;
-        } else if (substructure.tag.equals("CONC")) {
+        } else if ("CONC".equals(substructure.tag)) {
             payload += substructure.payload;
             return false;
         } else {
@@ -154,7 +173,6 @@ public class GedStruct {
             sb.append(id);
             sb.append(' ');
         }
-        // to do: add URI-to-tag processing
         sb.append(tag);
         if (pointsTo != null) {
             // to do: add ID addition if point to non-ID struct
