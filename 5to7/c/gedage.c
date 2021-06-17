@@ -43,7 +43,7 @@ GedAge *gedAgeParse551(char *payload) {
     }
 
     if (*p == 'S' || *p == 's') {
-        p += 1; if (*p != 'T' && *p != 's') GED_AGE_INVALID
+        p += 1; if (*p != 'T' && *p != 't') GED_AGE_INVALID
         p += 1; if (*p != 'I' && *p != 'i') GED_AGE_INVALID
         p += 1; if (*p != 'L' && *p != 'l') GED_AGE_INVALID
         p += 1; if (*p != 'L' && *p != 'l') GED_AGE_INVALID
