@@ -14,6 +14,7 @@
 2 TYPE OTHER
 3 PHRASE Screen
 0 @3@ _LOC
+1 TYPE Example
 1 NAME New York
 2 TYPE City
 0 @1@ SUBM
