@@ -20,13 +20,15 @@ Current status:
     - [x] change age words to canonical forms (stillborn as `0y`, child as `< 8y`, infant as `< 1y`) with `PHRASE`s
     - [x] Normalize spacing in `AGE` payloads
     - [x] add missing `y`
+- [x] change `SOUR` with text payload into pointer to `SOUR` with `NOTE`
+- [x] Change any illegal tag `XYZ` into `_EXT_XYZ`
 - [ ] Convert `LANG` payloads to BCP 47 tags, using [FHISO's mapping](https://github.com/fhiso/legacy-format/blob/master/languages.tsv)
 - [ ] Convert `MEDI`.`FORM` payloads to media types
 - [ ] Enumerated values
     - [ ] Normalize case
     - [ ] Convert user-text to `PHRASE`s
-- [ ] change `SOUR` with text payload into pointer to `SOUR` with `NOTE`
 - [ ] change `NOTE` record or with pointer payload into `SNOTE`
+    - [ ] use heuristic to change some pointer-`NOTE` to nested-`NOTE` instead of `SNOTE`
 - [ ] change `OBJE` with no payload to pointer to new `OBJE` record
 - [ ] Convert `FONE` and `ROMN` to `TRAN` and their `TYPE`s to BCP-47 `LANG`s
 - [ ] tag renaming, including
@@ -50,8 +52,6 @@ Current status:
 - [x] update the `GEDC`.`VERS` to `7.0`
 - [ ] (extra) change string-valued `INDI`.`ALIA` into `NAME` with `TYPE` `AKA`
 - [ ] (5.5) change base64-encoded OBJE into GEDZIP
-- [ ] Change any illegal tag `XYZ` into `_EXT_XYZ`
-- [ ] use heuristic to change some pointer-`NOTE` to nested-`NOTE` instead of `SNOTE`
 - [ ] add `SCHMA` for all used known extensions
     - [ ] add URIs (or standard tags) for all extensions from <https://wiki-de.genealogy.net/GEDCOM/_Nutzerdef-Tag> and <http://www.gencom.org.nz/GEDCOM_tags.html>
 

@@ -17,11 +17,11 @@ public class SourceFilter implements Filter {
             GedStruct note = new GedStruct(sour, "https://gedcom.io/terms/v7/NOTE", s.payload);
             newRecords.add(sour);
             s.payload = null;
-            s.pointsTo = sour;
+            s.pointTo(sour);
             GedStruct data = new GedStruct(null, "https://gedcom.io/terms/v7/SOUR-DATA");
-            for(GedStruct s2 : s.sub) if ("TEXT".equals(s.tag)) {
-                s.uri = "https://gedcom.io/terms/v7/TEXT";
-                data.addSubstructure(s);
+            for(GedStruct s2 : s.sub) if ("TEXT".equals(s2.tag)) {
+                s2.uri = "https://gedcom.io/terms/v7/TEXT";
+                data.addSubstructure(s2);
             }
             if (data.sub.size() > 0) {
                 s.sub.removeIf(s2 -> "TEXT".equals(s2.tag));

@@ -16,7 +16,7 @@ public class Converter5to7 {
     private int lastID;
     private final int ID_BASE;
     private final int ID_TO_SKIP;
-    private Collection<GedStruct> records;
+    private LinkedList<GedStruct> records;
     private List<String> log;
     private static String TSV_DIR = "../../GEDCOM/extracted-files";
     
@@ -98,6 +98,12 @@ public class Converter5to7 {
         lastID = -1;
         
         fuzzyParse(filename);
+        GedStruct trlr = records.removeLast();
+        if (!"TRLR".equals(trlr.tag)) {
+System.err.println("Expected TRLR, found:\n" +trlr+"\n");
+            records.add(trlr);
+            trlr = new GedStruct(null, "TRLR");
+        }
         for(GedStruct s : records) s.tag2uri();
         
         Filter[] filters = {
@@ -117,6 +123,7 @@ public class Converter5to7 {
         for(GedStruct s : records) s.uri2tag();
         
         reID();
+        records.add(trlr);
     }
     
     /**

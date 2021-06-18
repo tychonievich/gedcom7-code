@@ -166,6 +166,16 @@ public class GedStruct {
         for(GedStruct s : sub) s.convertPointers(xref, cleanup, cachetype);
     }
     
+    public void pointTo(GedStruct struct) {
+        if (pointsTo == struct) return;
+        if (pointsTo != null) pointsTo.incoming.remove(this);
+        pointsTo = struct;
+        if (pointsTo != null) {
+            if (pointsTo.incoming == null) pointsTo.incoming = new LinkedList<GedStruct>();
+            pointsTo.incoming.add(this);
+        }
+    }
+    
     // accumulate pointed-to-by
     // convert tag to URI
     // validate payload datatypes and pointed-to types
@@ -181,6 +191,7 @@ public class GedStruct {
             sb.append(id);
             sb.append(' ');
         }
+        if (uri == null && !"CONT".equals(tag) && !"TRLR".equals(tag)) sb.append("_EXT_");
         sb.append(tag);
         if (pointsTo != null) {
             // to do: add ID addition if point to non-ID struct
@@ -191,6 +202,7 @@ public class GedStruct {
             sb.append(' ');
             sb.append(payload.replaceAll("^@|\\n@|\\r@","$0@").replaceAll("\r\n?|\n", "\n"+(level+1)+" CONT "));
         }
+        //if (incoming != null && incoming.size() > 0) sb.append("    <- "+incoming.size());
         sb.append("\n");
         for(GedStruct s : sub) s.serialize(sb);
     }
