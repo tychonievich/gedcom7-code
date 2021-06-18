@@ -42,6 +42,14 @@ public class GedStruct {
         payload = fixAtSign(m.group(4));
     }
     
+    
+    public GedStruct(GedStruct sup, String tag) {
+        this.sub = new LinkedList<GedStruct>();
+        if (tag.indexOf(':') < 0) this.tag = tag;
+        else this.uri = tag;
+        if (sup != null) { sup.addSubstructure(this); this.level = sup.level+1; }
+        else { this.sup = null; this.level = 0; }
+    }
     public GedStruct(GedStruct sup, String tag, String payload) {
         this.sub = new LinkedList<GedStruct>();
         if (tag.indexOf(':') < 0) this.tag = tag;

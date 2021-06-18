@@ -103,6 +103,7 @@ public class Converter5to7 {
         Filter[] filters = {
             new AgeDateFilter(),
             new VersionFilter(),
+            new SourceFilter(),
         };
         for(Filter f : filters) {
             java.util.LinkedList<GedStruct> created = new java.util.LinkedList<GedStruct>();
