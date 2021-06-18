@@ -27,6 +27,7 @@
 #include <string.h>
 #include <ctype.h>
 
+
 /**
  * Recursively walk the structure, looking for SOUR with text payloads;
  * each one found causes a source record to be emitted and changes it
@@ -64,6 +65,36 @@ void ged_sours2r_helper(GedStructure *s, GedEmitterTemplate *emitter, long *seri
                 GedEvent tmp = {GED_RECORD, GED_OWNS_DATA, .record=sr};
                 emitter->emit(emitter, tmp);
             }
+
+            // Create DATA and move any TEXT into it
+            GedStructure *data = calloc(1, sizeof(GedStructure));
+            data->tag = (GedEvent){GED_START, 0, .data="DATA"};
+            GedStructure *tail = 0;
+            if (s->child && !strcmp("TEXT", s->child->tag.data)) {
+                tail = data->child = s->child;
+                data->sibling = s->child->sibling;
+                s->child = data;
+                tail->sibling = 0;
+            }
+            GedStructure *end = s->child;
+            while(end && end->sibling) {
+                if (!strcmp("TEXT", end->sibling->tag.data)) {
+                    if (!tail) {
+                        tail = data->child = end->sibling;
+                        end->sibling = data;
+                        data->sibling = tail->sibling;
+                        tail->sibling = 0;
+                    } else {
+                        tail = tail->sibling = end->sibling;
+                        end->sibling = end->sibling->sibling;
+                        tail->sibling = 0;
+                    }
+                } else {
+                    end = end->sibling;
+                }
+            }
+            if (!tail) free(data);
+
         }
         ged_sours2r_helper(s->child, emitter, serial);
         s = s->sibling;
