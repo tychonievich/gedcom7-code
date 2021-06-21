@@ -100,7 +100,6 @@ public class Converter5to7 {
         fuzzyParse(filename);
         GedStruct trlr = records.removeLast();
         if (!"TRLR".equals(trlr.tag)) {
-System.err.println("Expected TRLR, found:\n" +trlr+"\n");
             records.add(trlr);
             trlr = new GedStruct(null, "TRLR");
         }
@@ -110,6 +109,7 @@ System.err.println("Expected TRLR, found:\n" +trlr+"\n");
             new AgeDateFilter(),
             new VersionFilter(),
             new SourceFilter(),
+            new ObjectFilter(),
         };
         for(Filter f : filters) {
             java.util.LinkedList<GedStruct> created = new java.util.LinkedList<GedStruct>();

@@ -20,16 +20,16 @@ Current status:
     - [x] change age words to canonical forms (stillborn as `0y`, child as `< 8y`, infant as `< 1y`) with `PHRASE`s
     - [x] Normalize spacing in `AGE` payloads
     - [x] add missing `y`
-- [x] change `SOUR` with text payload into pointer to `SOUR` with `NOTE`
 - [x] Change any illegal tag `XYZ` into `_EXT_XYZ`
+- [x] change `SOUR` with text payload into pointer to `SOUR` with `NOTE`
+- [x] change `OBJE` with no payload to pointer to new `OBJE` record
+- [ ] change `NOTE` record or with pointer payload into `SNOTE`
+    - [ ] use heuristic to change some pointer-`NOTE` to nested-`NOTE` instead of `SNOTE`
 - [ ] Convert `LANG` payloads to BCP 47 tags, using [FHISO's mapping](https://github.com/fhiso/legacy-format/blob/master/languages.tsv)
 - [ ] Convert `MEDI`.`FORM` payloads to media types
 - [ ] Enumerated values
     - [ ] Normalize case
     - [ ] Convert user-text to `PHRASE`s
-- [ ] change `NOTE` record or with pointer payload into `SNOTE`
-    - [ ] use heuristic to change some pointer-`NOTE` to nested-`NOTE` instead of `SNOTE`
-- [ ] change `OBJE` with no payload to pointer to new `OBJE` record
 - [ ] Convert `FONE` and `ROMN` to `TRAN` and their `TYPE`s to BCP-47 `LANG`s
 - [ ] tag renaming, including
     - `EMAI`, `_EMAIL` → `EMAIL`
