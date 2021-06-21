@@ -12,11 +12,11 @@
  * 
  *      0 @id@ OBJE
  *      1 FILE ...
- *      1 TITL ...
  * 
  * and
  * 
  *      1 OBJE @id@
+ *      2 TITL ...
  * 
  * Should be after `event2record` and before both `fixid` and `enums`
  */
@@ -38,8 +38,20 @@ void ged_objes2r_helper(GedStructure *s, GedEmitterTemplate *emitter, long *seri
                 GedEvent tmp = {GED_START, 0, .data="OBJE"};
                 or->tag = tmp;
             }
-            or->child = s->child;
-            s->child = 0;
+            
+            // move all substructures except TITL
+            GedStructure **src = &(s->child);
+            GedStructure **dst = &(or->child);
+            while(*src) {
+                if (!strcmp("TITL", (*src)->tag.data)) {
+                    src = &((*src)->sibling);
+                } else {
+                    *dst = *src;
+                    *src = (*src)->sibling;
+                    dst = &((*dst)->sibling);
+                    *dst = 0;
+                }
+            }
             
             or->anchor.type = GED_ANCHOR;
             or->anchor.flags = GED_OWNS_DATA;
