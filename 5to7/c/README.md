@@ -1,3 +1,7 @@
+# Obsolete
+
+This repository contained too many distinct projects, making tracking its updates messy. The project in this directory is no longer being updated; for an up-to-date copy see <https://github.com/gedcom7code/c-converter>
+
 # GEDCOM 5.5.1 to GEDCOM 7.0 converter
 
 GEDCOM 7.0 is a breaking change with GEDCOM 5.5.1. This means that 5.5.1 files cannot be parsed as-is as if they were 7.0 files.
