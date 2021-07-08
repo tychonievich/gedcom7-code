@@ -4,6 +4,7 @@
  */
 
 #include "ansel2utf8.h"
+#include "platform.h"
 
 #include <string.h> // strcasecmp
 #include <ctype.h> // isspace

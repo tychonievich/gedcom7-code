@@ -21,6 +21,8 @@
  * 5. add your entry into the pipeline
  */
 
+#include "../platform.h"
+
 #include "nop.c" // ged_nostate_maker, ged_nostate_freer
 #include "unconc.c" // ged_longstate_maker, ged_longstate_freer
 #include "mergepayload.c"
